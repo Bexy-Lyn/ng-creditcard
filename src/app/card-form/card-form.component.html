@@ -1,0 +1,11 @@
+<form [formGroup]="form" (ngSubmit)="submit()">
+    <app-input label="Name" [control]="$any(form).controls['name']"></app-input>
+    <app-input label="Card Number" [control]="$any(form).controls['cardNumber']"></app-input>
+    <app-input label="Expiration" [control]="$any(form).controls['expiration']"></app-input>
+    <app-input label="Security Code" [control]="$any(form).controls['securityCode']"></app-input>
+    <button class="button is-primary" type="submit" [disabled]="!form.valid">Submit</button>
+</form>
+
+<div>Form Contents: {{form.value | json}}</div>
+<div>Valid: {{form.valid}}</div>
+<div>Errors around name: {{form.get('name')?.errors | json}}</div>
