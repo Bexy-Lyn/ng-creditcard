@@ -1,11 +1,28 @@
-<form [formGroup]="form" (ngSubmit)="submit()">
-    <app-input label="Name" [control]="$any(form).controls['name']"></app-input>
-    <app-input label="Card Number" [control]="$any(form).controls['cardNumber']"></app-input>
-    <app-input label="Expiration" [control]="$any(form).controls['expiration']"></app-input>
-    <app-input label="Security Code" [control]="$any(form).controls['securityCode']"></app-input>
-    <button class="button is-primary" type="submit" [disabled]="!form.valid">Submit</button>
-</form>
+<div class="columns">
+    <div class="column">
+        <app-card 
+        [name]="form.controls['name'].value"
+        [cardNumber]="form.controls['cardNumber'].value"
+        [expiration]="form.controls['expiration'].value"
+        ></app-card>
+    </div>
+    <div class="column">
+        <form [formGroup]="form" (ngSubmit)="submit()">
+            <app-input label="Name" [control]="$any(form).controls['name']"></app-input>
+            <app-input label="Card Number" [control]="$any(form).controls['cardNumber']"></app-input>
+           <div class="columns">
+               <div class="column">
+                    <app-input label="Expiration" [control]="$any(form).controls['expiration']"></app-input>
+               </div>
+               <div class="column">
+                <app-input label="Security Code" [control]="$any(form).controls['securityCode']"></app-input>
+               </div>
+            </div>
+            <div class="buttons">
+                <button class="button is-primary" type="submit" [disabled]="!form.valid">Submit</button>
+                <button type="button" class="button is-warning" (click)="reset()">Reset</button>    
+            </div>
+           </form>
+    </div>
+</div>
 
-<div>Form Contents: {{form.value | json}}</div>
-<div>Valid: {{form.valid}}</div>
-<div>Errors around name: {{form.get('name')?.errors | json}}</div>

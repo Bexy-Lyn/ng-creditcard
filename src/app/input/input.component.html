@@ -2,7 +2,11 @@
 <div class="field">
     <label class="label">{{label}}</label>
     <div class="control">
-        <input class="input" [ngClass]="{'is-danger':showErrors()}" [formControl]='control'/>
+        <input 
+            class="input" 
+            [ngClass]="{'is-danger':showErrors()}" 
+            [formControl]='control'
+        />
     </div>
     <ng-container *ngIf="showErrors()">
         <div class="help is-danger" *ngIf="control.errors?.['required']">Value is required</div>
@@ -15,7 +19,6 @@
             but it cannot be longer than {{control.errors?.['maxlength'].requiredLength}}.
         </div>
         <div class="help is-danger" *ngIf="control.errors?.['pattern']">
-            {{control.errors?.['pattern']|json}}
             The value you entered has a wrong format. Please try again.
         </div>
     </ng-container>
